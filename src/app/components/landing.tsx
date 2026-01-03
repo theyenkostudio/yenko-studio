@@ -372,7 +372,7 @@ export default function LandingTemplate() {
           </div>
         </div>
         <div className="footer-bottom">
-          <div>© 2025 YENKO STUDIO. All Rights Reserved.</div>
+          <div>© {new Date().getFullYear()} YENKO STUDIO. All Rights Reserved.</div>
           <div>
             RC: 9040058
           </div>
