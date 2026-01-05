@@ -99,9 +99,11 @@ export default function LandingTemplate() {
     };
   }, []);
 
+  const showBanner = process.env.NEXT_PUBLIC_SHOW_PARTNERS_BANNER === "true";
+
   return (
-    <div className="has-banner">
-      <AnnouncementBanner />
+    <div className={showBanner ? "has-banner" : ""}>
+      {showBanner && <AnnouncementBanner />}
       <div className="header">
         <div className="logo-container">
           <div className="logo-text">YENKO STUDIO</div>
