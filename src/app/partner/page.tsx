@@ -22,12 +22,12 @@ export default function PartnerPage() {
         <h1 className="partner-title">Earn By Connecting Us With Clients</h1>
         <p className="partner-subtitle">
           Know a business that needs a website, mobile app, or custom software?
-          Introduce them to us and earn a commission on every successful project.
+          Introduce them to us and earn a commission on every successful referral.
         </p>
       </section>
 
       <section className="partner-content">
-        <div className="partner-grid">
+        {/* <div className="partner-grid">
           <div className="partner-card">
             <div className="partner-card-number">01</div>
             <h3 className="partner-card-title">Simple Process</h3>
@@ -64,12 +64,12 @@ export default function PartnerPage() {
               itself.
             </p>
           </div>
-        </div>
+        </div> */}
 
         <div className="partner-highlight">
           <div className="partner-highlight-label">COMMISSION STRUCTURE</div>
           <h2 className="partner-highlight-title">
-            10% Commission on Every Project
+            10% Commission on Every Referral
           </h2>
           <p className="partner-highlight-text">
             For every client you successfully refer, you receive 10% of the
@@ -138,7 +138,7 @@ export default function PartnerPage() {
           <div className="partner-list-item">
             <span className="partner-list-icon">02</span>
             <div className="partner-list-content">
-              <h4 className="partner-list-title">We Handle the Rest</h4>
+              <h4 className="partner-list-title">We Close the Deal</h4>
               <p className="partner-list-text">
                 Our team will reach out to the client, understand their
                 requirements, and present a proposal. You don&apos;t need to be
@@ -152,8 +152,7 @@ export default function PartnerPage() {
               <h4 className="partner-list-title">Get Paid</h4>
               <p className="partner-list-text">
                 Once the project is signed and initial payment is made, we
-                transfer your commission. Payments can be made via bank transfer
-                or mobile money.
+                transfer your commission. 
               </p>
             </div>
           </div>
