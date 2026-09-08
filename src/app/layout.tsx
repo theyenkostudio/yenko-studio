@@ -5,7 +5,6 @@ import { switzer } from "./fonts/switzer";
 import SiteHeader from "./components/site-header";
 import SiteFooter from "./components/site-footer";
 import PageTransition from "./components/page-transition";
-import AnnouncementBanner from "./components/announcement-banner";
 import SmoothScroll from "./components/smooth-scroll";
 import SankofaDial from "./components/sankofa-dial";
 import ProgressiveBlur from "./components/progressive-blur";
@@ -124,7 +123,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const showBanner = process.env.NEXT_PUBLIC_SHOW_PARTNERS_BANNER === "true";
 
   return (
     <html lang="en" className={switzer.variable}>
@@ -152,9 +150,8 @@ export default function RootLayout({
       </head>
       <body>
         <SmoothScroll>
-          {showBanner && <AnnouncementBanner />}
           <ProgressiveBlur />
-          <SiteHeader hasBanner={showBanner} />
+          <SiteHeader />
           <PageTransition>{children}</PageTransition>
           <SiteFooter />
           <SankofaDial />

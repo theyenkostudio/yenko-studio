@@ -32,7 +32,7 @@ function LocalTimes() {
   return <div className="studio-menu__times"><div><span>Accra</span><strong>{times.accra}</strong></div><div><span>Lagos</span><strong>{times.lagos}</strong></div></div>;
 }
 
-export default function SiteHeader({ hasBanner = false }: { hasBanner?: boolean }) {
+export default function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -49,7 +49,7 @@ export default function SiteHeader({ hasBanner = false }: { hasBanner?: boolean 
     return () => { document.documentElement.style.overflow = ""; };
   }, [menuOpen]);
 
-  return <header className={`site-header fixed left-0 right-0 z-100 flex items-center justify-between ${pathname === "/" ? "site-header--home" : ""} ${scrolled ? "site-header--scrolled" : ""} ${menuOpen ? "site-header--menu" : ""} ${hasBanner ? "top-10" : "top-0"}`}>
+  return <header className={`site-header fixed left-0 right-0 z-100 flex items-center justify-between ${pathname === "/" ? "site-header--home" : ""} ${scrolled ? "site-header--scrolled" : ""} ${menuOpen ? "site-header--menu" : ""} top-0`}>
     <Link href="/" className="site-header__brand flex items-center gap-3" aria-label="Yenko Studio, home"><SankofaMark className="h-5 w-5" tone={(pathname === "/" && !scrolled) || menuOpen ? "paper" : "ink"} /><span>YENKO STUDIO</span></Link>
     <MenuToggle open={menuOpen} onClick={() => setMenuOpen((open) => !open)} />
     <AnimatePresence>
