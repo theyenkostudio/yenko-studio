@@ -1,0 +1,10 @@
+const groups = [
+  { title: "The right fit", items: [["What kinds of projects are a fit?", "We are most useful when a business has a meaningful digital opportunity: a new product, a site that has to earn trust, or an internal system that is holding the team back."], ["Do you only work with African businesses?", "No. We are rooted in Accra and Lagos, work closely with businesses across Africa, and partner with ambitious teams wherever the work makes sense."]] },
+  { title: "Scope & shape", items: [["What do you actually build?", "Websites, digital products, internal tools, integrations and the brand systems that make those things feel clear and coherent."], ["Can you work with an existing team?", "Yes. We can lead a focused delivery or work alongside an in-house team, founders, and existing technical partners."]] },
+  { title: "Process & timing", items: [["How do engagements begin?", "With a focused conversation about the opportunity, the people involved and what success needs to look like. We then recommend the right shape of engagement before writing a proposal."], ["How long does a project take?", "A focused Build commonly runs for 6–12 weeks. More involved products are shaped around their actual complexity, with a clear delivery plan before work begins."]] },
+  { title: "Working together", items: [["What is the difference between Build and Run?", "Build is a defined project from opportunity to launch. Run is an ongoing product and technology partnership for teams that need consistent momentum after launch."], ["Why begin on WhatsApp?", "It is a direct route to the people doing the work. Share the context in the way that is easiest for you, and we will respond personally."]] },
+];
+
+export default function StudioFaq() {
+  return <section className="studio-faq"><div className="studio-label"><span>05</span><span>COMMON QUESTIONS</span></div><div className="studio-faq__grid">{groups.map((group) => <section key={group.title}><h2>{group.title}</h2><div>{group.items.map(([question, answer]) => <article key={question}><h3>{question}</h3><p>{answer}</p></article>)}</div></section>)}</div></section>;
+}

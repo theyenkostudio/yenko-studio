@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" aria-label="Sankofa mark">
+  <!-- Paper version for dark fields. Geometry matches sankofa-mark-ink.svg exactly. -->
+  <g stroke="#FAFAF7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M51 14a11 11 0 1 0-18 8.5C18 23 10 31.5 10 43c0 5 2 8 2 8 8-1 15-4 20-9 5 5 12 8 22 9-1-12-6-21-15-25"/>
+    <path d="M33 22.5 41 31l-8 8.5"/>
+  </g>
+</svg>

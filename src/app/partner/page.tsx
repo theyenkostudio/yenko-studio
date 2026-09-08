@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Partner With Us | Yenko Studio",
@@ -10,19 +9,13 @@ export const metadata: Metadata = {
 export default function PartnerPage() {
   return (
     <div className="partner-page">
-      <header className="partner-header">
-        <Link href="/" className="partner-back-link">
-          <span>←</span>
-          <span>YENKO STUDIO</span>
-        </Link>
-      </header>
-
       <section className="partner-hero">
-        <div className="partner-label">partnership opportunity</div>
-        <h1 className="partner-title">Earn By Connecting Us With Clients</h1>
+        <div className="partner-label">partnership program</div>
+        <h1 className="partner-title">Earn By Connecting Us With the Right Clients</h1>
         <p className="partner-subtitle">
-          Know a business that needs a website, mobile app, or custom software?
-          Introduce them to us and earn a commission on every successful referral.
+          If you work with businesses who need serious web, mobile, brand, or
+          bespoke software work — not the cheapest bid, the right build —
+          introduce them and earn a commission on every engagement that closes.
         </p>
       </section>
 
@@ -114,10 +107,11 @@ export default function PartnerPage() {
           <div className="partner-list-item">
             <span className="partner-list-icon">→</span>
             <div className="partner-list-content">
-              <h4 className="partner-list-title">Anyone With a Network</h4>
+              <h4 className="partner-list-title">Founders and Operators</h4>
               <p className="partner-list-text">
-                If you know business owners who need digital solutions, you can
-                become a partner. No technical background required.
+                If you know a founder or operator who needs serious work done
+                properly — not the cheapest bid — an introduction is worth
+                more to us than a cold lead, and we&apos;ll treat it that way.
               </p>
             </div>
           </div>

@@ -1,28 +1,30 @@
 import { Metadata } from "next";
-import { Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import { switzer } from "./fonts/switzer";
+import SiteHeader from "./components/site-header";
+import SiteFooter from "./components/site-footer";
+import PageTransition from "./components/page-transition";
+import AnnouncementBanner from "./components/announcement-banner";
+import SmoothScroll from "./components/smooth-scroll";
+import SankofaDial from "./components/sankofa-dial";
+import ProgressiveBlur from "./components/progressive-blur";
 
-const bricolageGrotesque = Bricolage_Grotesque({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-bricolage-grotesque",
-});
+const TAGLINE =
+  "Yenko Studio is a broad-capability studio — web, mobile, brand, bespoke systems — building for ambitious businesses across Ghana, Nigeria, and beyond.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yenko.studio"),
   alternates: {
     canonical: "/",
   },
-  title: "Yenko Studio | Engineered to Last, Designed to Perfection",
-  description:
-    "We build robust, scalable software that solves real business problems—combining technical excellence with user-focused design to deliver products that drive growth and stand the test of time.",
-  keywords: "web development, mobile apps, custom software, SaaS platforms, API development, digital agency, software engineering, Yenko Studio",
+  title: "Yenko Studio | Back, and building broad",
+  description: TAGLINE,
+  keywords: "web development, mobile apps, custom software, brand, digital studio, software engineering, Ghana, Nigeria, Yenko Studio",
 
   openGraph: {
-    title: "Yenko Studio | Engineered to Last, Designed to Perfection",
-    description:
-      "We build robust, scalable software that solves real business problems—combining technical excellence with user-focused design to deliver products that drive growth and stand the test of time.",
+    title: "Yenko Studio | Back, and building broad",
+    description: TAGLINE,
     type: "website",
     locale: "en_US",
     images: [
@@ -31,15 +33,14 @@ export const metadata: Metadata = {
         url: "/yenko_og.webp",
         width: 1200,
         height: 630,
-        alt: "Yenko Studio - Engineered to Last, Designed to Perfection",
+        alt: "Yenko Studio",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yenko Studio | Engineered to Last, Designed to Perfection",
-    description:
-      "We build robust, scalable software that solves real business problems—combining technical excellence with user-focused design to deliver products that drive growth and stand the test of time.",
+    title: "Yenko Studio | Back, and building broad",
+    description: TAGLINE,
     images: ["/yenko-og.jpg"],
     creator: "@theyenkostudio",
   },
@@ -51,8 +52,7 @@ const jsonLd = {
   name: "Yenko Studio",
   url: "https://yenko.studio",
   logo: "https://yenko.studio/logo.png",
-  description:
-    "We build robust, scalable software that solves real business problems—combining technical excellence with user-focused design to deliver products that drive growth and stand the test of time.",
+  description: TAGLINE,
   foundingDate: "2025",
   address: {
     "@type": "PostalAddress",
@@ -92,7 +92,7 @@ const jsonLd = {
       name: "Nigeria",
     },
     {
-      "t@type": "Place",
+      "@type": "Place",
       name: "West Africa",
     },
     {
@@ -103,31 +103,18 @@ const jsonLd = {
   hasOffer: [
     {
       "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: "E-commerce Websites",
-      },
+      name: "Build",
+      description: "A fixed-scope project, shipped to production and priced against the outcome.",
     },
     {
       "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: "Custom App Development",
-      },
+      name: "Run",
+      description: "A standing monthly retainer — Yenko as the ongoing technical and creative function.",
     },
     {
       "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: "Web Development",
-      },
-    },
-    {
-      "@type": "Offer",
-      itemOffered: {
-        "@type": "Service",
-        name: "App Development",
-      },
+      name: "Back",
+      description: "Cash plus equity, for a small number of early-stage teams a year.",
     },
   ],
 };
@@ -137,13 +124,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const showBanner = process.env.NEXT_PUBLIC_SHOW_PARTNERS_BANNER === "true";
+
   return (
-    <html lang="en" className={bricolageGrotesque.variable}>
+    <html lang="en" className={switzer.variable}>
       <head>
-        <link
-          href="https://fonts.cdnfonts.com/css/bankgothic-md-bt"
-          rel="stylesheet"
-        />
         <Script
           id="json-ld"
           type="application/ld+json"
@@ -165,7 +150,16 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-bricolage-grotesque">{children}</body>
+      <body>
+        <SmoothScroll>
+          {showBanner && <AnnouncementBanner />}
+          <ProgressiveBlur />
+          <SiteHeader hasBanner={showBanner} />
+          <PageTransition>{children}</PageTransition>
+          <SiteFooter />
+          <SankofaDial />
+        </SmoothScroll>
+      </body>
     </html>
   );
 }
