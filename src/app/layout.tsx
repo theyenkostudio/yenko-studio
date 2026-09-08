@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
 import { switzer } from "./fonts/switzer";
-import MainPageWrapper from "./components/countdown-loader";
 import SiteHeader from "./components/site-header";
 import SiteFooter from "./components/site-footer";
 import PageTransition from "./components/page-transition";
@@ -152,16 +151,14 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <MainPageWrapper>
-          <SmoothScroll>
-            {showBanner && <AnnouncementBanner />}
-            <ProgressiveBlur />
-            <SiteHeader hasBanner={showBanner} />
-            <PageTransition>{children}</PageTransition>
-            <SiteFooter />
-            <SankofaDial />
-          </SmoothScroll>
-        </MainPageWrapper>
+        <SmoothScroll>
+          {showBanner && <AnnouncementBanner />}
+          <ProgressiveBlur />
+          <SiteHeader hasBanner={showBanner} />
+          <PageTransition>{children}</PageTransition>
+          <SiteFooter />
+          <SankofaDial />
+        </SmoothScroll>
       </body>
     </html>
   );
