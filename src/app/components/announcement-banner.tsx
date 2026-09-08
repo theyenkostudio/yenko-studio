@@ -4,11 +4,11 @@ import Link from "next/link";
 
 export default function AnnouncementBanner() {
   return (
-    <Link href="/partner" className="announcement-banner">
+    <Link href="/journal" className="announcement-banner">
       <div className="announcement-content">
-        <span className="announcement-label">NOW HIRING</span>
+        <span className="announcement-label">WE&apos;RE BACK</span>
         <span className="announcement-text">
-          Earn commissions by connecting us with clients
+          Yenko Studio is reviving — see what we&apos;re building
         </span>
         <span className="announcement-arrow">→</span>
       </div>

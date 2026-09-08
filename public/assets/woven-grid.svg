@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none" aria-hidden="true">
+  <!-- Intended as a repeatable background image; inherit color from its embedding context. -->
+  <g stroke="currentColor" stroke-width="1.5" opacity=".72">
+    <path d="M0 8h48M0 24h48M0 40h48"/>
+    <path d="M8 0v48M24 0v48M40 0v48"/>
+  </g>
+  <g fill="currentColor">
+    <path d="M8 5 11 8 8 11 5 8ZM24 21l3 3-3 3-3-3ZM40 37l3 3-3 3-3-3Z"/>
+  </g>
+</svg>

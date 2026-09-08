@@ -5,34 +5,34 @@ import ExpandableBlock from "./expandable-block";
 const FAQs = () => {
   const faqs = [
     {
-      question: "What services do you offer?",
+      question: "Wait, didn't Yenko go quiet for a while?",
       answer:
-        "We specialize in web applications, mobile apps (both native and cross-platform), and custom software solutions including SaaS platforms, API development, and AI integrations. Each project is tailored to your specific business needs.",
+        "Yes. The team scattered and the pipeline stopped for a stretch. We're not hiding that — a studio choosing to come back on its own terms, sharper than before, is a better story than pretending nothing happened.",
     },
     {
-      question: "How long does a typical project take?",
+      question: "What's the difference between Build, Run, and Back?",
       answer:
-        "Project timelines vary based on complexity and scope. A simple website might take 4-6 weeks, while a full SaaS platform could take 3-6 months. We'll provide a detailed timeline after understanding your requirements.",
+        "Build is a fixed-scope project priced against the outcome. Run is a standing monthly retainer — we become your ongoing technical and creative function. Back is cash plus equity, reserved for a small number of early-stage teams a year. Most engagements start as a Build and graduate to a Run.",
     },
     {
-      question: "What is your development process?",
+      question: "What do you actually build?",
       answer:
-        "We follow an agile development approach with regular check-ins and iterations. You'll be involved throughout—from initial planning and design, through development sprints, to testing and launch. Transparency and collaboration are key to our process.",
+        "Web, mobile (native and cross-platform), brand and product design, and bespoke systems — APIs, backends, integrations. We stay broad on purpose; the range is backed by real delivered work, not a guess at what we should specialize in.",
     },
     {
-      question: "Do you provide ongoing support after launch?",
+      question: "How long does a Build take?",
       answer:
-        "Yes, we offer maintenance and support packages to ensure your product continues to perform optimally. This includes bug fixes, updates, performance monitoring, and feature enhancements as your business grows.",
+        "Typically 6–12 weeks, start to production, depending on scope. We'll give a real timeline after understanding what you actually need — not a generic range.",
     },
     {
-      question: "What technologies do you work with?",
+      question: "Why WhatsApp instead of a contact form?",
       answer:
-        "We use modern, proven technologies including React, Next.js, Node.js, React Native, and more. We choose the tech stack based on your project requirements, scalability needs, and long-term maintenance considerations.",
+        "Because that's genuinely how business gets done here. A form is where inquiries go to be ignored; a WhatsApp message gets a real person, usually the same day.",
     },
     {
-      question: "How much does a project cost?",
+      question: "How much does it cost?",
       answer:
-        "Project costs vary significantly based on complexity, features, and timeline. We provide transparent, detailed quotes after an initial consultation. Our focus is on delivering value—building solutions that drive real business growth and ROI.",
+        "Depends on the tier and the scope — we don't publish a generic price list because generic pricing produces generic work. Tell us what you're building on WhatsApp and we'll give you a real number.",
     },
   ];
 
@@ -41,11 +41,10 @@ const FAQs = () => {
       <div className="max-w-[1200px] mx-auto">
         <div className="mb-8 space-y-2 px-5">
           <h1 className="text-black md:text-8xl text-lg font-bold">
-            Do you have questions?
+            Questions, answered straight
           </h1>
           <p className="text-slate-500">
-            Discover how Yenko Studio empowers you to build remarkable digital
-            experiences
+            No boilerplate — including the one about the dormancy.
           </p>
         </div>
         <div>

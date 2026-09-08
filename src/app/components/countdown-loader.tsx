@@ -2,17 +2,30 @@
 
 import { useState, useEffect, ReactNode } from "react";
 
+const LOADER_SESSION_KEY = "yenko-loader-shown";
+
 export default function MainPageWrapper({children}:{children:ReactNode}) {
   const [showLoader, setShowLoader] = useState(true);
   const [phase, setPhase] = useState(0);
   const [words] = useState([
-    "ENGINEERING",
-    "DESIGNING", 
-    "EXCEPTIONAL",
-    "SOLUTIONS"
+    "REVIVING",
+    "BUILDING",
+    "BROADLY",
+    "BACK"
   ]);
 
   useEffect(() => {
+    let alreadyShown = false;
+    try {
+      alreadyShown = sessionStorage.getItem(LOADER_SESSION_KEY) === "1";
+    } catch {
+      alreadyShown = false;
+    }
+    if (alreadyShown) {
+      setShowLoader(false);
+      return;
+    }
+
     const intervals = [800, 1200, 1000, 900];
     let currentPhase = 0;
 
@@ -24,16 +37,23 @@ export default function MainPageWrapper({children}:{children:ReactNode}) {
           if (currentPhase < words.length) {
             advance();
           } else {
-            setTimeout(() => setShowLoader(false), 600);
+            setTimeout(() => {
+              setShowLoader(false);
+              try {
+                sessionStorage.setItem(LOADER_SESSION_KEY, "1");
+              } catch {
+                // ignore — worst case the loader plays again
+              }
+            }, 600);
           }
         }, intervals[currentPhase]);
       }
     };
 
     advance();
-  }, [words.length]);
+  }, [showLoader, words.length]);
 
-  
+
 
   if (!showLoader) {
     return (
