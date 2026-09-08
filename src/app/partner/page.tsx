@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Partner With Us | Yenko Studio",
+  title: "Partner With Us",
   description:
     "Earn commissions by connecting businesses with Yenko Studio. Join our referral program and get rewarded for every client you bring.",
 };

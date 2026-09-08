@@ -18,7 +18,7 @@ export async function generateMetadata({
   const item = workItems.find((w) => w.slug === slug);
   if (!item) return {};
   return {
-    title: `${item.client} | Yenko Studio Work`,
+    title: `${item.client} Work`,
     description: item.summary,
   };
 }

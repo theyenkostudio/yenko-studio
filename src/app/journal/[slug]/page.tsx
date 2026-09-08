@@ -17,7 +17,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = journalPosts.find((p) => p.slug === slug);
   if (!post) return {};
-  return { title: `${post.title} | Yenko Studio Journal`, description: post.excerpt };
+  return { title: post.title, description: post.excerpt };
 }
 
 export default async function JournalPostPage({

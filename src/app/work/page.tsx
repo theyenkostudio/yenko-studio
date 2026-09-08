@@ -5,8 +5,9 @@ import RevealText from "../components/reveal-text";
 import CTABand from "../components/cta-band";
 
 export const metadata: Metadata = {
-  title: "Work | Yenko Studio",
-  description: "Real projects, honestly described — not invented case studies.",
+  title: "Work",
+  description:
+    "Websites, web apps and custom software built by Yenko Studio for clients across Ghana, Nigeria and beyond — with what we did and why.",
 };
 
 export default function WorkPage() {

@@ -5,8 +5,9 @@ import SectionDivider from "../components/section-divider";
 import FAQs from "../components/faq";
 
 export const metadata: Metadata = {
-  title: "Approach | Yenko Studio",
-  description: "How Build, Run, and Back actually work — and how an engagement starts.",
+  title: "Approach",
+  description:
+    "How we scope, price and deliver web and software projects — fixed scopes, named milestones, and a clear path from first conversation to launch.",
 };
 
 const TIERS = [

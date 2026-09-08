@@ -5,8 +5,9 @@ import RevealText from "../components/reveal-text";
 import CTABand from "../components/cta-band";
 
 export const metadata: Metadata = {
-  title: "Journal | Yenko Studio",
-  description: "Building in public — starting with the tool we're building for ourselves.",
+  title: "Journal",
+  description:
+    "Notes on design, engineering and running a digital product studio in West Africa, written by the team doing the work.",
 };
 
 export default function JournalPage() {

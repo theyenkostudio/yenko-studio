@@ -8,21 +8,37 @@ import PageTransition from "./components/page-transition";
 import SmoothScroll from "./components/smooth-scroll";
 import SankofaDial from "./components/sankofa-dial";
 import ProgressiveBlur from "./components/progressive-blur";
+import { LINKEDIN_URL, INSTAGRAM_URL, EMAIL } from "./data/links";
+
+const TITLE = "Yenko Studio — Digital product studio in Accra & Lagos";
 
 const TAGLINE =
-  "Yenko Studio is a broad-capability studio — web, mobile, brand, bespoke systems — building for ambitious businesses across Ghana, Nigeria, and beyond.";
+  "Digital product studio in Accra and Lagos. We design and build websites, web apps and custom software for founders and growth-stage teams across Africa.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yenko.studio"),
   alternates: {
     canonical: "/",
   },
-  title: "Yenko Studio | Back, and building broad",
+  title: {
+    default: TITLE,
+    // Child pages set just their own name; this appends the studio.
+    template: "%s — Yenko Studio",
+  },
   description: TAGLINE,
-  keywords: "web development, mobile apps, custom software, brand, digital studio, software engineering, Ghana, Nigeria, Yenko Studio",
+  keywords: [
+    "digital product studio",
+    "web development Accra",
+    "software studio Ghana",
+    "product design Lagos",
+    "web design Nigeria",
+    "brand systems",
+    "Next.js development",
+    "Yenko Studio",
+  ],
 
   openGraph: {
-    title: "Yenko Studio | Back, and building broad",
+    title: TITLE,
     description: TAGLINE,
     type: "website",
     locale: "en_US",
@@ -38,9 +54,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yenko Studio | Back, and building broad",
+    title: TITLE,
     description: TAGLINE,
-    images: ["/yenko-og.jpg"],
+    images: ["/yenko_og.webp"],
     creator: "@theyenkostudio",
   },
 };
@@ -76,10 +92,11 @@ const jsonLd = {
       contactType: "customer support",
     },
   ],
-  email: "mailto:hello@yenko.studio",
+  email: `mailto:${EMAIL}`,
   sameAs: [
     "https://x.com/theyenkostudio",
-    "https://www.linkedin.com/company/yenkostudio/",
+    LINKEDIN_URL,
+    INSTAGRAM_URL,
   ],
   areaServed: [
     {
