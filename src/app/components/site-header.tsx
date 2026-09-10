@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import MenuToggle from "./menu-toggle";
 import RollingLabel from "./ui/rolling-label";
+import { WHATSAPP_URL } from "../data/links";
 
 const NAV_LINKS = [
   { href: "/", label: "Home", number: "01" },
@@ -14,8 +15,6 @@ const NAV_LINKS = [
   { href: "/about", label: "About", number: "04" },
   { href: "/journal", label: "Journal", number: "05" },
 ];
-
-const WHATSAPP_URL = "https://wa.me/message/MFCTDFBXVE7ZK1";
 
 function LocalTimes() {
   const [times, setTimes] = useState({ accra: "--:--", lagos: "--:--" });
