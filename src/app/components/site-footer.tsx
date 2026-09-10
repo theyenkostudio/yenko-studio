@@ -5,8 +5,8 @@ import RollingLabel from "./ui/rolling-label";
 
 const NAV = [
   { href: "/work", label: "Work" },
+  { href: "/services", label: "Services" },
   { href: "/about", label: "About" },
-  { href: "/approach", label: "Approach" },
   { href: "/journal", label: "Journal" },
 ];
 

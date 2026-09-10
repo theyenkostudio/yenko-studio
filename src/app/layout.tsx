@@ -10,16 +10,13 @@ import SankofaDial from "./components/sankofa-dial";
 import ProgressiveBlur from "./components/progressive-blur";
 import { LINKEDIN_URL, INSTAGRAM_URL, EMAIL } from "./data/links";
 
-const TITLE = "Yenko Studio — Digital product studio in Accra & Lagos";
+const TITLE = "Yenko Studio — Digital product studio in Accra & Abuja";
 
 const TAGLINE =
-  "Digital product studio in Accra and Lagos. We design and build websites, web apps and custom software for founders and growth-stage teams across Africa.";
+  "Digital product studio in Accra and Abuja. We design and build websites, web apps and custom software for founders and growth-stage teams across Africa.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yenko.studio"),
-  alternates: {
-    canonical: "/",
-  },
   title: {
     default: TITLE,
     // Child pages set just their own name; this appends the studio.
@@ -30,7 +27,7 @@ export const metadata: Metadata = {
     "digital product studio",
     "web development Accra",
     "software studio Ghana",
-    "product design Lagos",
+    "product design Abuja",
     "web design Nigeria",
     "brand systems",
     "Next.js development",
@@ -114,23 +111,6 @@ const jsonLd = {
     {
       "@type": "Place",
       name: "Working Globally",
-    },
-  ],
-  hasOffer: [
-    {
-      "@type": "Offer",
-      name: "Build",
-      description: "A fixed-scope project, shipped to production and priced against the outcome.",
-    },
-    {
-      "@type": "Offer",
-      name: "Run",
-      description: "A standing monthly retainer — Yenko as the ongoing technical and creative function.",
-    },
-    {
-      "@type": "Offer",
-      name: "Back",
-      description: "Cash plus equity, for a small number of early-stage teams a year.",
     },
   ],
 };

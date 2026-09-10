@@ -18,8 +18,8 @@ export default function Principle() {
         clear enough for people to trust, use and return to.
       </p>
 
-      <Button href="/approach" on="ink" variant="text" className="mt-10 self-start">
-        Our approach
+      <Button href="/about" on="ink" variant="text" className="mt-10 self-start">
+        About the studio
       </Button>
     </section>
   );

@@ -1,53 +1,66 @@
-import Link from "next/link";
-import { Metadata } from "next";
 import { journalPosts } from "../data/journal";
-import RevealText from "../components/reveal-text";
-import CTABand from "../components/cta-band";
+import { pageMeta } from "../data/seo";
+import Contact from "../components/home/contact";
+import MaskReveal from "../components/home/mask-reveal";
+import JournalLead from "../components/journal/journal-lead";
+import JournalArchive from "../components/journal/journal-archive";
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Journal",
   description:
     "Notes on design, engineering and running a digital product studio in West Africa, written by the team doing the work.",
-};
+  path: "/journal",
+});
+
+const FACTS = [
+  { term: "Written by", detail: "The team doing the work" },
+  { term: "Subjects", detail: "Design, engineering, running a studio" },
+];
 
 export default function JournalPage() {
+  // Ordered by date rather than by position in the array, so the lead is
+  // always the newest note however the data file happens to be arranged.
+  const ordered = [...journalPosts].sort(
+    (a, b) => Date.parse(b.published) - Date.parse(a.published),
+  );
+  const [latest, ...earlier] = ordered;
+
   return (
-    <div>
-      <section className="px-8 pt-40 pb-20 text-center md:px-15">
-        <div className="mb-6 text-xs tracking-[3px] text-ink/40">journal</div>
-        <RevealText
+    <div className="bg-studio-paper text-studio-ink">
+      <section className="mt-[var(--header-h)] bg-studio-ink px-[5vw] pt-[clamp(4rem,11vw,9rem)] pb-[clamp(2rem,4vw,3.5rem)] text-studio-paper">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-studio-muted">
+          Journal
+        </p>
+
+        <MaskReveal
           as="h1"
-          className="mx-auto max-w-200 text-4xl font-extrabold leading-tight text-balance md:text-6xl"
-        >
-          Building in public.
-        </RevealText>
-        <RevealText
-          as="p"
-          className="mx-auto mt-8 max-w-165 text-lg leading-relaxed text-ink/65"
-          delay={0.1}
-        >
-          Notes from the revival — starting with the WhatsApp tool
-          we&apos;re building for our own sales process before we ever sell
-          it to anyone else.
-        </RevealText>
+          immediate
+          delay={0.3}
+          lines={["This is the", "company brain."]}
+          className="mt-[clamp(1.5rem,3.5vw,3rem)] text-[clamp(2.75rem,10.5vw,11rem)] font-medium leading-[0.9] tracking-[-0.06em]"
+        />
+
+        <p className="mt-[clamp(1.75rem,3.5vw,2.75rem)] max-w-[52ch] text-[clamp(1rem,1.5vw,1.25rem)] leading-relaxed text-studio-dim">
+          Where the studio thinks out loud &mdash; how we design, how we build,
+          how we run the business, and what we are learning while we do it.
+        </p>
+
+        <dl className="mt-[clamp(3rem,7vw,5rem)] flex flex-wrap gap-x-16 gap-y-5 border-t border-studio-paper/20 pt-6">
+          {FACTS.map(({ term, detail }) => (
+            <div key={term} className="flex flex-col gap-2">
+              <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-studio-muted">
+                {term}
+              </dt>
+              <dd className="m-0 text-[15px] tracking-[-0.01em]">{detail}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
-      <section className="mx-auto flex max-w-225 flex-col gap-6 px-8 pb-24 md:px-15">
-        {journalPosts.map((post) => (
-          <Link
-            href={`/journal/${post.slug}`}
-            key={post.slug}
-            className="block border border-ink/10 p-8 text-ink no-underline transition-colors hover:border-ink/30"
-          >
-            <span className="text-xs tracking-wide text-ink/40">{post.date}</span>
-            <h2 className="mt-3 mb-3 text-2xl font-bold">{post.title}</h2>
-            <p className="mb-5 text-ink/65 leading-relaxed">{post.excerpt}</p>
-            <span className="text-sm tracking-wide underline decoration-ink/30">Read →</span>
-          </Link>
-        ))}
-      </section>
+      {latest && <JournalLead post={latest} />}
+      <JournalArchive posts={earlier} />
 
-      <CTABand />
+      <Contact />
     </div>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import Sankofa from "./ui/sankofa";
 import {
   motion,
   useMotionValueEvent,
@@ -99,15 +100,8 @@ export default function SankofaDial() {
           transform="rotate(-90 32 32)"
         />
         <motion.g style={{ rotate, transformOrigin: "32px 32px" }}>
-          <g
-            transform="translate(32 32) scale(0.58) translate(-32 -32)"
-            stroke="currentColor"
-            strokeWidth="4.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M51 14a11 11 0 1 0-18 8.5C18 23 10 31.5 10 43c0 5 2 8 2 8 8-1 15-4 20-9 5 5 12 8 22 9-1-12-6-21-15-25" />
-            <path d="M33 22.5 41 31l-8 8.5" />
+          <g transform="translate(32 32) scale(0.58) translate(-32 -32)">
+            <Sankofa />
           </g>
         </motion.g>
       </svg>

@@ -7,16 +7,20 @@ import { workItems } from "../../data/work";
 import SectionLabel from "./section-label";
 
 const ROW =
-  "grid grid-cols-[56px_1fr_minmax(180px,0.5fr)_90px] items-baseline gap-x-8 gap-y-2 border-b border-studio-line py-[clamp(1.4rem,2.8vw,2.3rem)] max-[860px]:grid-cols-[34px_1fr]";
-const META =
-  "text-[10px] uppercase tracking-[0.09em] text-studio-muted max-[860px]:col-start-2";
+  "grid grid-cols-[1fr_minmax(180px,0.5fr)_90px] items-baseline gap-x-8 gap-y-2 border-b border-studio-line py-[clamp(1.4rem,2.8vw,2.3rem)] max-[860px]:grid-cols-1";
+const META = "text-[10px] uppercase tracking-[0.09em] text-studio-muted";
 
 /**
  * Selected work as an index rather than a grid — a handful of projects read
  * as a curated list where they would read as a half-empty grid.
  *
  * Only `status: "live"` items appear. Flipping a coming-soon entry to live in
- * work.ts is all it takes for it to show up here, numbered in sequence.
+ * work.ts is all it takes for it to show up here.
+ *
+ * Rows are deliberately unnumbered. The section label already carries a numeral
+ * ("02 — Selected Work") as its position in the homepage sequence, and a second
+ * run of numbers in the same micro-label style directly beneath read as the
+ * same counter continuing rather than a different one starting.
  *
  * Hovering a row floats its cover alongside the cursor. That is a desktop
  * enhancement only: on touch, or under reduced motion, each row shows its
@@ -63,7 +67,8 @@ export default function SelectedWork() {
       Math.abs(target.current.x - current.current.x) < 0.3 &&
       Math.abs(target.current.y - current.current.y) < 0.3;
 
-    frame.current = settled && !tracking.current ? null : requestAnimationFrame(render);
+    frame.current =
+      settled && !tracking.current ? null : requestAnimationFrame(render);
   }, []);
 
   useEffect(() => {
@@ -103,10 +108,14 @@ export default function SelectedWork() {
       id="work"
       className="bg-studio-stone px-[5vw] py-[clamp(5.5rem,10vw,9rem)] text-studio-ink"
     >
-      <SectionLabel number="02" label="Selected Work" className="text-studio-muted" />
+      <SectionLabel
+        number="02"
+        label="Selected Work"
+        className="text-studio-muted"
+      />
 
       <div className="mt-[clamp(3rem,6vw,5rem)] border-t border-studio-ink">
-        {live.map((item, index) => (
+        {live.map((item) => (
           <Link
             key={item.slug}
             href={`/work/${item.slug}`}
@@ -114,8 +123,6 @@ export default function SelectedWork() {
             onMouseEnter={() => enter(item.slug)}
             onMouseLeave={leave}
           >
-            <span className={META}>{String(index + 1).padStart(2, "0")}</span>
-
             <h3 className="text-[clamp(1.6rem,3.4vw,3.2rem)] tracking-[-0.055em] [font-variation-settings:'wght'_450] transition-[font-variation-settings] duration-[400ms] ease-out group-hover:[font-variation-settings:'wght'_700]">
               {item.client}
             </h3>
@@ -127,7 +134,7 @@ export default function SelectedWork() {
             </span>
 
             {/* Touch and reduced-motion fallback — the cover, inline. */}
-            <div className="col-start-2 col-end-[-1] mt-4 hidden aspect-[1.6] w-full overflow-hidden bg-studio-ink max-[860px]:block">
+            <div className="col-span-full mt-4 hidden aspect-[1.6] w-full overflow-hidden bg-studio-ink max-[860px]:block">
               <Image
                 src={item.thumbnail}
                 alt={`${item.client} website`}

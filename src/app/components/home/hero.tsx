@@ -10,7 +10,7 @@ export default function Hero() {
     >
       <div className="flex justify-between gap-4 text-[10px] font-semibold uppercase tracking-[0.12em] text-studio-paper/65">
         <span>Strategy · Design · Technology</span>
-        <span>Accra / Lagos / Global</span>
+        <span>Accra / Abuja / Global</span>
       </div>
 
       <div className="my-auto w-full">

@@ -36,7 +36,7 @@ export default function LandingTemplate() {
         </div>
       </div>
 
-      <Contact />
+      <Contact number="06" />
     </main>
   );
 }

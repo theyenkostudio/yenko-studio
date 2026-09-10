@@ -1,97 +1,90 @@
-import Link from "next/link";
-import { Metadata } from "next";
 import { workItems } from "../data/work";
-import RevealText from "../components/reveal-text";
-import CTABand from "../components/cta-band";
+import { pageMeta } from "../data/seo";
+import Contact from "../components/home/contact";
+import WorkEntry from "../components/work/work-entry";
+import MaskReveal from "../components/home/mask-reveal";
 
-export const metadata: Metadata = {
+export const metadata = pageMeta({
   title: "Work",
   description:
     "Websites, web apps and custom software built by Yenko Studio for clients across Ghana, Nigeria and beyond — with what we did and why.",
-};
+  path: "/work",
+});
+
+/** Stated in the masthead rather than counted from the work, so a short list
+ *  never reads as the page apologising for itself. */
+const FACTS = [
+  { term: "Based in", detail: "Accra & Abuja" },
+  { term: "Practice", detail: "Web, e-commerce, brand systems" },
+];
 
 export default function WorkPage() {
+  // Only published work. Cataloguing what hasn't been written yet turns the
+  // index into a list of absences — and a placeholder card reads as a card
+  // that failed to load, not as honesty about the pipeline.
+  const live = workItems.filter((item) => item.status === "live");
+
   return (
-    <div>
-      <section className="px-8 pt-40 pb-20 text-center md:px-15">
-        <div className="mb-6 text-xs tracking-[3px] text-ink/40">work</div>
-        <RevealText
+    <div className="bg-studio-paper text-studio-ink">
+      {/*
+        A top-level destination, so it opens on ink at full display scale and
+        carries no section numeral. Numbering belongs to the homepage's single
+        sequence; borrowing it here is what makes a main page read as somebody
+        else's subsection.
+      */}
+      <section className="mt-[var(--header-h)] bg-studio-ink px-[5vw] pt-[clamp(4rem,11vw,9rem)] pb-[clamp(2rem,4vw,3.5rem)] text-studio-paper">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.12em] text-studio-muted">
+          Work
+        </p>
+
+        {/*
+          The studio's opening gesture, same as the homepage hero. `immediate`
+          because this is above the fold on load — waiting for the viewport
+          would mean the heading is only ever seen already-arrived. The delay
+          clears the page transition so the lines rise into a settled page.
+
+          Lines are authored, never auto-split, so `text-balance` comes off:
+          the breaks are the decision now, not something the browser guesses.
+
+          Two lines rather than three, and the long one carries the phrase that
+          matters. Short lines cannot fill a wide measure at any sane size — at
+          this width "Work that" alone would need ~315px type to span it — so
+          the break, not the font size, is what was leaving the right half
+          empty. The ceiling is raised to sit nearer the homepage hero's scale.
+        */}
+        <MaskReveal
           as="h1"
-          className="mx-auto max-w-200 text-4xl font-extrabold leading-tight text-balance md:text-6xl"
-        >
-          The work, as it actually exists.
-        </RevealText>
-        <RevealText
-          as="p"
-          className="mx-auto mt-8 max-w-165 text-lg leading-relaxed text-ink/65"
-          delay={0.1}
-        >
-          We&apos;d rather show one real project honestly than invent three
-          polished ones. This list grows as more of it gets written up
-          properly.
-        </RevealText>
-      </section>
+          immediate
+          delay={0.3}
+          lines={["Work that", "earns its keep."]}
+          className="mt-[clamp(1.5rem,3.5vw,3rem)] text-[clamp(2.75rem,10.5vw,11rem)] font-medium leading-[0.9] tracking-[-0.06em]"
+        />
 
-      <section className="mx-auto grid max-w-350 grid-cols-1 gap-6 px-8 pb-24 md:grid-cols-2 md:px-15">
-        {workItems.map((item) => {
-          const isLive = item.status === "live";
-          const cardClasses =
-            "block border no-underline transition-colors overflow-hidden " +
-            (isLive ? "border-ink/10 text-ink hover:border-ink/30" : "border-ink/10 text-ink/70");
+        <p className="mt-[clamp(1.75rem,3.5vw,2.75rem)] max-w-[46ch] text-[clamp(1rem,1.5vw,1.25rem)] leading-relaxed text-studio-dim">
+          Sites and products built to do a job &mdash; bring in the right
+          clients, sell the goods, hold up under real use. Each one is live. Go
+          and use it.
+        </p>
 
-          const Card = (
-            <>
-              <div className="relative aspect-video w-full overflow-hidden bg-ink/5">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={item.thumbnail}
-                  alt=""
-                  aria-hidden="true"
-                  className={`h-full w-full object-cover transition-transform duration-500 ${
-                    isLive ? "group-hover:scale-105" : "opacity-70"
-                  }`}
-                />
-                {!isLive && (
-                  <span className="absolute top-3 right-3 border border-paper/40 bg-ink/70 px-2 py-0.5 text-[10px] tracking-wide text-paper">
-                    Coming soon
-                  </span>
-                )}
-              </div>
-              <div className="p-8">
-                <span className="text-xs tracking-wide text-ink/40">
-                  {isLive ? item.year : "In progress"}
-                </span>
-                <h2 className="mt-3 mb-3 text-xl font-semibold">{item.client}</h2>
-                <p className="text-sm leading-relaxed text-ink/65">{item.summary}</p>
-                {item.services.length > 0 && (
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {item.services.map((s) => (
-                      <span key={s} className="border border-ink/15 px-2.5 py-1 text-xs text-ink/60">
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </>
-          );
-
-          return isLive ? (
-            <Link href={`/work/${item.slug}`} key={item.slug} className={`group ${cardClasses}`}>
-              {Card}
-            </Link>
-          ) : (
-            <div key={item.slug} className={cardClasses}>
-              {Card}
+        <dl className="mt-[clamp(3rem,7vw,5.5rem)] flex flex-wrap gap-x-16 gap-y-5 border-t border-studio-paper/20 pt-6">
+          {FACTS.map(({ term, detail }) => (
+            <div key={term} className="flex flex-col gap-2">
+              <dt className="text-[10px] font-semibold uppercase tracking-[0.12em] text-studio-muted">
+                {term}
+              </dt>
+              <dd className="m-0 text-[15px] tracking-[-0.01em]">{detail}</dd>
             </div>
-          );
-        })}
+          ))}
+        </dl>
       </section>
 
-      <CTABand
-        heading="Have a project in mind?"
-        body="Tell us what you're building on WhatsApp — we'll tell you honestly whether it's a fit."
-      />
+      {live.map((item, index) => (
+        <WorkEntry key={item.slug} item={item} index={index} />
+      ))}
+
+      {/* The homepage's closing band. No numeral: passing none is how a page
+          outside the homepage sequence opts out. */}
+      <Contact />
     </div>
   );
 }
