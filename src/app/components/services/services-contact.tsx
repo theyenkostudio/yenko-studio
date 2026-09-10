@@ -35,16 +35,19 @@ export default function ServicesContact({
 
       <div className="mt-[clamp(2.5rem,5vw,4rem)] grid grid-cols-[1fr_0.9fr] items-start gap-[clamp(2.5rem,6vw,6rem)] max-[860px]:grid-cols-1">
         <figure className="grid grid-cols-[minmax(0,200px)_minmax(0,1fr)] items-center gap-[clamp(1.5rem,3vw,2.5rem)] max-[600px]:grid-cols-1">
-          {/* A cut-out on white, so it keeps its own plate rather than being
-              blended into the ink — the same call as the evidence frames. */}
-          <CoverReveal className="border border-studio-paper/20 bg-white max-[600px]:max-w-[180px]">
+          {/* Same square stone plate as the Sankofa block on /about. The source
+              photo shipped with a baked-in near-white background, which read as
+              a lit block on an ink band; it is cut out (mfon-cutout.png) so the
+              portrait sits on the plate's own tone rather than carrying a
+              brighter one of its own. */}
+          <CoverReveal className="flex aspect-square items-center justify-center bg-studio-stone max-[600px]:max-w-[180px]">
             <Image
               src={image}
               alt={`${name}, ${role.toLowerCase()} at Yenko Studio`}
               width={500}
               height={500}
               sizes="(max-width: 600px) 180px, 200px"
-              className="h-auto w-full"
+              className="h-auto w-full grayscale"
             />
           </CoverReveal>
 

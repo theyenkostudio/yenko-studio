@@ -19,8 +19,8 @@ const MFON = {
   quote:
     "I own the schedule, the questions and the reply. You never have to wonder who to ask, or chase an update through a group chat.",
   name: "Mfon Etuk",
-  role: "Project manager",
-  image: "/assets/mfon.jpg",
+  role: "Product manager",
+  image: "/assets/mfon-cutout.png",
 };
 
 const FACTS = [
