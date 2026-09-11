@@ -120,6 +120,7 @@ export default function SelectedWork() {
             key={item.slug}
             href={`/work/${item.slug}`}
             className={`${ROW} group transition-[padding-left] duration-[400ms] ease-out hover:pl-[1.1rem]`}
+            data-cursor="quiet"
             onMouseEnter={() => enter(item.slug)}
             onMouseLeave={leave}
           >
