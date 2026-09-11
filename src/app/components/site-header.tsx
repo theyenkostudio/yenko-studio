@@ -7,6 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import MenuToggle from "./menu-toggle";
 import RollingLabel from "./ui/rolling-label";
 import { WHATSAPP_URL } from "../data/links";
+import { useStudioTimes } from "./ui/use-studio-times";
 
 const NAV_LINKS = [
   { href: "/", label: "Home", number: "01" },
@@ -16,37 +17,18 @@ const NAV_LINKS = [
   { href: "/journal", label: "Journal", number: "05" },
 ];
 
+/** The same two clocks as the contact ledger, stacked for the menu foot. */
 function LocalTimes() {
-  const [times, setTimes] = useState({ accra: "--:--", lagos: "--:--" });
-  useEffect(() => {
-    const update = () =>
-      setTimes({
-        accra: new Intl.DateTimeFormat("en-GB", {
-          timeZone: "Africa/Accra",
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-        }).format(new Date()),
-        lagos: new Intl.DateTimeFormat("en-GB", {
-          timeZone: "Africa/Lagos",
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-        }).format(new Date()),
-      });
-    update();
-    const interval = window.setInterval(update, 60_000);
-    return () => window.clearInterval(interval);
-  }, []);
+  const { accra, abuja } = useStudioTimes();
   return (
     <div className="studio-menu__times">
       <div>
         <span>Accra</span>
-        <strong>{times.accra}</strong>
+        <strong>{accra}</strong>
       </div>
       <div>
         <span>Abuja</span>
-        <strong>{times.lagos}</strong>
+        <strong>{abuja}</strong>
       </div>
     </div>
   );
