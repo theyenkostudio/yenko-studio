@@ -137,3 +137,123 @@ html.lenis,html.lenis body { height:auto; } .lenis.lenis-smooth { scroll-behavio
 .studio-menu__nav a { grid-template-columns:44px 1fr; }.studio-menu__nav a b { display:none; }
 .studio-menu__times { display:flex; flex-direction:row !important; gap:1.25rem; }.studio-menu__times div { display:flex; flex-direction:column; gap:.1rem; }.studio-menu__times span { margin:0 !important; color:#f2f1ec66 !important; font-size:9px !important; }.studio-menu__times strong { font-size:13px; font-weight:500; letter-spacing:.02em; }
 @media (max-width:700px) { .studio-menu__nav a { grid-template-columns:35px 1fr; } }
+
+/* ── Custom cursor ──────────────────────────────────────────────
+   Every rule here is gated on `.has-cursor`, which the Cursor component
+   adds at runtime. Nothing below applies until JS has confirmed a fine
+   pointer and no reduced-motion preference, so a failed bundle leaves the
+   native cursor exactly where it was. */
+.yk-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* Above everything we draw, the preloader included — the native cursor is
+     hidden while this is active, so anything painted over it would leave the
+     page with no pointer at all. The one thing it cannot beat is a modal
+     <dialog>, which lives in the browser's top layer; that case restores the
+     native cursor instead. */
+  z-index: 400;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  opacity: 0;
+  will-change: transform;
+}
+.has-cursor-seen .yk-cursor { opacity: 1; }
+
+.yk-cursor--dot {
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  background: #fff;
+  border-radius: 50%;
+}
+.yk-cursor--ring {
+  width: 38px;
+  height: 38px;
+  margin: -19px 0 0 -19px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  transition:
+    width 0.3s cubic-bezier(0.215, 0.61, 0.355, 1),
+    height 0.3s cubic-bezier(0.215, 0.61, 0.355, 1),
+    margin 0.3s cubic-bezier(0.215, 0.61, 0.355, 1),
+    opacity 0.25s ease;
+}
+
+/* Interactive: the ring swells. */
+.has-cursor-hot .yk-cursor--ring { width: 64px; height: 64px; margin: -32px 0 0 -32px; }
+
+/* Work rows already trail a cover preview — one follower is enough. */
+.has-cursor-quiet .yk-cursor--ring { opacity: 0; }
+
+/* Hide the native cursor only once ours is actually on screen. */
+.has-cursor.has-cursor-seen,
+.has-cursor.has-cursor-seen *:not(dialog[open]):not(dialog[open] *) { cursor: none; }
+
+/* The I-beam says something a ring does not. */
+.has-cursor-text .yk-cursor { opacity: 0; }
+.has-cursor.has-cursor-seen :is(input, textarea, select, [contenteditable="true"]) { cursor: auto; }
+
+/* Top-layer modal, or the pointer left the window. */
+.has-cursor-off .yk-cursor { opacity: 0; }
+.has-cursor.has-cursor-off, .has-cursor.has-cursor-off * { cursor: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  .yk-cursor { display: none; }
+}
+
+/* ── Sankofa preloader ──────────────────────────────────────────
+   Overlays the real page rather than replacing it, so the server HTML is
+   always the page itself. `.yk-seen` is set by an inline script in <head>
+   before first paint — by the time React hydrates the markup has already
+   been shown, so a repeat visitor would otherwise catch a frame of it. */
+.yk-load {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: clamp(2rem, 5vh, 4rem) 5vw clamp(2.5rem, 7vh, 5rem);
+  background: var(--color-studio-ink);
+  color: var(--color-studio-paper);
+  clip-path: inset(0 0 0 0);
+}
+.yk-seen .yk-load { display: none; }
+.yk-loading { overflow: hidden; }
+
+.yk-load__bird {
+  justify-self: center;
+  align-self: center;
+  width: clamp(78px, 11vw, 132px);
+  transform-origin: 50% 80%;
+}
+.yk-load__bird svg { display: block; width: 100%; height: auto; }
+
+.yk-load__word {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  white-space: nowrap;
+  font-variation-settings: "wght" 650;
+  font-size: clamp(2rem, 10.5vw, 8rem);
+  letter-spacing: -0.045em;
+  line-height: 1;
+}
+.yk-load__lt { display: inline-block; opacity: 0; will-change: transform, opacity; }
+.yk-load__sp { width: 0.38em; }
+
+.yk-load__rule {
+  display: block;
+  width: min(72%, 760px);
+  height: 1px;
+  margin: clamp(1rem, 2.5vh, 1.75rem) auto 0;
+  background: currentColor;
+  opacity: 0.22;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+/* The arrival is the motion. With none available, there is nothing to show. */
+@media (prefers-reduced-motion: reduce) {
+  .yk-load { display: none; }
+}

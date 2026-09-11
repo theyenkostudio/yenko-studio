@@ -8,6 +8,8 @@ import PageTransition from "./components/page-transition";
 import SmoothScroll from "./components/smooth-scroll";
 import SankofaDial from "./components/sankofa-dial";
 import ProgressiveBlur from "./components/progressive-blur";
+import Preloader from "./components/loader/preloader";
+import Cursor from "./components/ui/cursor";
 import { LINKEDIN_URL, INSTAGRAM_URL, EMAIL } from "./data/links";
 
 const TITLE = "Yenko Studio — Digital product studio in Accra & Abuja";
@@ -124,6 +126,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={switzer.variable}>
       <head>
+        <script
+          id="yk-seen"
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(sessionStorage.getItem('yenko-arrived')==='1')document.documentElement.classList.add('yk-seen')}catch(e){}",
+          }}
+        />
         <Script
           id="json-ld"
           type="application/ld+json"
@@ -146,12 +155,14 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <Preloader />
         <SmoothScroll>
           <ProgressiveBlur />
           <SiteHeader />
           <PageTransition>{children}</PageTransition>
           <SiteFooter />
           <SankofaDial />
+          <Cursor />
         </SmoothScroll>
       </body>
     </html>
