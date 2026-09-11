@@ -27,7 +27,7 @@ function build() {
 
 > A design and technology studio based in Accra, Ghana and Abuja, Nigeria, working with clients worldwide. We design and build websites, e-commerce stores, brand systems and custom software.
 
-Every project includes a dedicated project manager and dedicated quality assurance — unusual for a studio of this size, and the clearest difference between us and a freelancer.
+Every project includes a dedicated product manager and dedicated quality assurance — unusual for a studio of this size, and the clearest difference between us and a freelancer.
 
 Projects begin with a conversation rather than a form. We say honestly when a project is not a fit for us.
 

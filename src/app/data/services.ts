@@ -100,7 +100,7 @@ export const pillars: Pillar[] = [
 
 export const delivery = [
   {
-    tag: "Project management",
+    tag: "Product management",
     title: "Someone answers, and it is not the developer mid-task",
     body: [
       "Every project gets one, and it is not a developer wearing a second hat for the afternoon.",
@@ -124,10 +124,17 @@ export const delivery = [
   },
 ];
 
+/** What we are already fluent in — not the limit of what we will work in.
+ *  "Build" was renamed once a back end roster existed beside it: with both on
+ *  the page, "Build" and "Back end" read as a distinction rather than a pair. */
 export const rosters = [
   {
-    tag: "Build",
+    tag: "Front end",
     items: ["React", "Next.js", "React Router", "Astro", "GSAP", "Framer Motion", "Sanity.io", "Payload"],
+  },
+  {
+    tag: "Back end & data",
+    items: ["JavaScript", "TypeScript", "Node.js", "Python", "Laravel", "PHP", "PostgreSQL", "MySQL", "MongoDB"],
   },
   {
     tag: "Design & working together",
