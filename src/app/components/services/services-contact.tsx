@@ -10,20 +10,25 @@ import CoverReveal from "../ui/cover-reveal";
  * because the reader has been looking at work or at ideas. Here they have just
  * read what the studio sells and who delivers it, so the honest close is the
  * person they would actually be dealing with, beside the details they need to
- * act. The claim on this page is that a real project manager answers; ending on
- * his face is the cheapest possible proof of it.
+ * act — here the CTO, since a services enquiry is a technical conversation
+ * before it is a scheduling one.
+ *
+ * Attributed by role rather than by name, at the subject's request — which is
+ * also why the portrait is dithered down to 1-bit. The quote stays first
+ * person: an unnamed "I" is still a person speaking, where a rewrite into the
+ * studio voice would give the section away as boilerplate.
  *
  * Ink, like every other closing band, so the page still ends dark.
  */
 export default function ServicesContact({
   quote,
-  name,
   role,
+  org,
   image,
 }: {
   quote: string;
-  name: string;
   role: string;
+  org: string;
   image: string;
 }) {
   return (
@@ -34,19 +39,20 @@ export default function ServicesContact({
       <SectionLabel label="Start A Conversation" className="text-studio-dim" />
 
       <div className="mt-[clamp(2.5rem,5vw,4rem)] grid grid-cols-[1fr_0.9fr] items-start gap-[clamp(2.5rem,6vw,6rem)] max-[860px]:grid-cols-1">
-        <figure className="grid grid-cols-[minmax(0,200px)_minmax(0,1fr)] items-center gap-[clamp(1.5rem,3vw,2.5rem)] max-[600px]:grid-cols-1">
-          {/* Same square stone plate as the Sankofa block on /about. The source
-              photo shipped with a baked-in near-white background, which read as
-              a lit block on an ink band; it is cut out (mfon-cutout.png) so the
-              portrait sits on the plate's own tone rather than carrying a
-              brighter one of its own. */}
-          <CoverReveal className="flex aspect-square items-center justify-center bg-studio-stone max-[600px]:max-w-[180px]">
+        <figure className="grid grid-cols-[minmax(0,280px)_minmax(0,1fr)] items-center gap-[clamp(1.5rem,3vw,2.5rem)] max-[600px]:grid-cols-1">
+          {/* Same square stone plate as the Sankofa block on /about. The
+              portrait is cut out of its background rather than sitting on a
+              plate of its own: the source is a room photo, and a wall behind
+              the figure would read as a second, brighter surface inside this
+              one. Greyscale so it belongs to the palette rather than bringing
+              its own. */}
+          <CoverReveal className="flex aspect-square items-center justify-center bg-studio-stone max-[600px]:max-w-[220px]">
             <Image
               src={image}
-              alt={`${name}, ${role.toLowerCase()} at Yenko Studio`}
-              width={500}
-              height={500}
-              sizes="(max-width: 600px) 180px, 200px"
+              alt={`${role} at ${org}`}
+              width={560}
+              height={560}
+              sizes="(max-width: 600px) 220px, 280px"
               className="h-auto w-full grayscale"
             />
           </CoverReveal>
@@ -56,8 +62,8 @@ export default function ServicesContact({
               {quote}
             </blockquote>
             <figcaption className="mt-6 border-t border-studio-paper/20 pt-4">
-              <span className="block font-semibold tracking-[-0.02em]">{name}</span>
-              <span className="mt-1 block text-sm text-studio-dim">{role}</span>
+              <span className="block font-semibold tracking-[-0.02em]">{role}</span>
+              <span className="mt-1 block text-sm text-studio-dim">{org}</span>
             </figcaption>
           </div>
         </figure>

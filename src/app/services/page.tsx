@@ -9,18 +9,20 @@ import { SITE_URL } from "../data/links";
 export const metadata = pageMeta({
   title: "Services",
   description:
-    "Websites, e-commerce, brand systems and custom software from Yenko Studio in Accra and Abuja — with a dedicated project manager and quality assurance on every project.",
+    "Websites, e-commerce, brand systems and custom software from Yenko Studio in Accra and Abuja — with a dedicated product manager and quality assurance on every project.",
   path: "/services",
 });
 
-/** Drafted for Mfon and approved by him. First person on purpose: the studio
- *  speaks everywhere else on this page, so the close should not. */
-const MFON = {
+/** Approved by the person it speaks for. First person on purpose: the studio
+ *  speaks everywhere else on this page, so the close should not. Attributed by
+ *  role rather than name at his request, which is also why the portrait is a
+ *  cut-out rather than a headshot. */
+const CLOSER = {
   quote:
-    "I own the schedule, the questions and the reply. You never have to wonder who to ask, or chase an update through a group chat.",
-  name: "Mfon Etuk",
-  role: "Product manager",
-  image: "/assets/mfon-cutout.png",
+    "We are a young studio, and we build like it: close to the work, quick to answer, and careful with anything that carries your name.",
+  role: "CTO",
+  org: "Yenko Studio",
+  image: "/assets/pm-portrait.png",
 };
 
 const FACTS = [
@@ -112,7 +114,7 @@ export default function ServicesPage() {
           And who builds it.
         </h2>
         <p className="mt-6 max-w-[56ch] text-[clamp(1rem,1.3vw,1.125rem)] leading-loose text-studio-muted">
-          Every project has a project manager and a tester assigned to it. That
+          Every project has a product manager and a tester assigned to it. That
           is standard, not an upgrade.
         </p>
 
@@ -128,7 +130,9 @@ export default function ServicesPage() {
           Our tech and tools.
         </h2>
         <p className="mt-6 max-w-[56ch] text-[clamp(1rem,1.3vw,1.125rem)] leading-loose text-studio-muted">
-          What we build with, and what we use to work together.
+          What we build with, and what we use to work together. This is where
+          we are already fluent rather than where we stop — the language is
+          usually the smallest decision on a project.
         </p>
 
         <div className="mt-[clamp(2.5rem,5vw,4rem)] grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-[clamp(2rem,5vw,4rem)]">
@@ -152,7 +156,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <ServicesContact {...MFON} />
+      <ServicesContact {...CLOSER} />
     </div>
   );
 }
