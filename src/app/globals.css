@@ -17,6 +17,9 @@
   --color-studio-line: #c9c8c0;
   --color-studio-muted: #5b5a54;
   --color-studio-dim: #a8a69d;
+  /* The only alarm colour on the site: an oxide red, desaturated enough to
+     sit on paper without shouting. Form errors only. */
+  --color-studio-alert: #8c2f1f;
 
   /* Tick that travels down the hero's scroll rail on hover. */
   --animate-rail-tick: rail-tick 2.6s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
