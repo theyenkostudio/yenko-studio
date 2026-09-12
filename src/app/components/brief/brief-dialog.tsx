@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import Button from "../ui/button";
+import { WHATSAPP_URL } from "../../data/links";
 
 /**
  * Project brief dialog.
@@ -43,6 +44,54 @@ const BUDGETS = [
   "$50,000+",
   "Not sure yet",
 ];
+
+/**
+ * WhatsApp as a second delivery path.
+ *
+ * Not an API call — `wa.me` opens the client's own WhatsApp with the brief
+ * already composed, and they press send. That keeps the studio number on the
+ * WhatsApp Business app: registering it with the Cloud API would take it off
+ * the phone, and a business-initiated notification would need an approved
+ * template besides. The thread that arrives is a real conversation to reply
+ * to, which is worth more here than an automated ping.
+ */
+
+/** Long URLs are dropped by wa.me. The brief is the only unbounded field. */
+const PROJECT_LIMIT = 700;
+
+/** Ordered, so the message reads the way the form does. */
+const SUMMARY: [keyof BriefFields, string][] = [
+  ["name", "Name"],
+  ["email", "Email"],
+  ["company", "Company"],
+  ["website_url", "Website"],
+  ["timeline", "Timeline"],
+  ["budget", "Budget"],
+];
+
+function composeMessage(data: FormData) {
+  const read = (key: string) => String(data.get(key) ?? "").trim();
+  const lines = ["New project brief — yenko.studio", ""];
+
+  for (const [key, label] of SUMMARY) {
+    const value = read(key);
+    // Optional fields left blank are omitted rather than sent as empty rows.
+    if (value) lines.push(`${label}: ${value}`);
+  }
+
+  const project = read("project");
+  if (project) {
+    lines.push(
+      "",
+      "Project:",
+      project.length > PROJECT_LIMIT
+        ? `${project.slice(0, PROJECT_LIMIT).trimEnd()}…`
+        : project
+    );
+  }
+
+  return lines.join("\n");
+}
 
 const FIELD =
   "w-full border-b border-studio-line bg-transparent pb-2 pt-1 text-[15px] text-studio-ink outline-none transition-colors duration-300 placeholder:text-studio-muted/60 focus:border-studio-ink aria-[invalid=true]:border-studio-alert";
@@ -107,6 +156,17 @@ export default function BriefDialog() {
   const startOver = () => {
     reset();
     form.current?.reset();
+  };
+
+  const sendOnWhatsApp = () => {
+    const node = form.current;
+    if (!node) return;
+    // Borrow the browser's own validation pass rather than inventing a
+    // second one: same required fields, same bubbles as the submit path.
+    if (!node.reportValidity()) return;
+
+    const text = encodeURIComponent(composeMessage(new FormData(node)));
+    window.open(`${WHATSAPP_URL}?text=${text}`, "_blank", "noopener,noreferrer");
   };
 
   return (
@@ -271,9 +331,18 @@ export default function BriefDialog() {
                       network and server errors the per-field ones do not. */}
                   <ValidationError errors={state.errors} className={ERROR} />
                 </div>
-                <Button type="submit" disabled={state.submitting}>
-                  {state.submitting ? "Sending…" : "Send the brief"}
-                </Button>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Button
+                    onClick={sendOnWhatsApp}
+                    variant="outline"
+                    icon="up-right"
+                  >
+                    Send on WhatsApp
+                  </Button>
+                  <Button type="submit" disabled={state.submitting}>
+                    {state.submitting ? "Sending…" : "Send the brief"}
+                  </Button>
+                </div>
               </div>
             </form>
           )}
