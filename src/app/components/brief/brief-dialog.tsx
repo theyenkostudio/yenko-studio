@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useForm, ValidationError } from "@formspree/react";
+import posthog from "posthog-js";
 import Button from "../ui/button";
 import { WHATSAPP_URL } from "../../data/links";
 
@@ -19,6 +20,10 @@ import { WHATSAPP_URL } from "../../data/links";
  */
 
 const FORM_ID = "mjyvdqag";
+const posthogLogger = posthog.logger;
+const isPostHogConfigured = Boolean(
+  process.env.NEXT_PUBLIC_POSTHOG_KEY && process.env.NEXT_PUBLIC_POSTHOG_HOST,
+);
 
 type BriefFields = {
   name: string;
@@ -124,8 +129,25 @@ export default function BriefDialog() {
     // Reopening after a send should offer a blank form, not the receipt.
     reset();
     dialog.current?.showModal();
+    if (isPostHogConfigured) {
+      posthog.capture("brief_dialog_opened");
+      posthogLogger.info("Project brief dialog opened", {
+        surface: "project_brief_dialog",
+      });
+    }
   };
   const close = () => dialog.current?.close();
+
+  const submitBrief = (event: React.FormEvent<HTMLFormElement>) => {
+    if (isPostHogConfigured) {
+      posthog.capture("project_brief_submission_attempted");
+      posthogLogger.info("Project brief submission attempted", {
+        surface: "project_brief_dialog",
+        delivery_method: "formspree",
+      });
+    }
+    return handleSubmit(event);
+  };
 
   // The page still scrolls behind an open dialog. Matches how the menu in
   // site-header locks scroll today — both want replacing with lenis.stop()
@@ -166,6 +188,13 @@ export default function BriefDialog() {
     if (!node.reportValidity()) return;
 
     const text = encodeURIComponent(composeMessage(new FormData(node)));
+    if (isPostHogConfigured) {
+      posthog.capture("project_brief_whatsapp_opened");
+      posthogLogger.info("Project brief WhatsApp handoff opened", {
+        surface: "project_brief_dialog",
+        delivery_method: "whatsapp",
+      });
+    }
     window.open(`${WHATSAPP_URL}?text=${text}`, "_blank", "noopener,noreferrer");
   };
 
@@ -225,7 +254,7 @@ export default function BriefDialog() {
               </div>
             </div>
           ) : (
-            <form ref={form} onSubmit={handleSubmit}>
+            <form ref={form} onSubmit={submitBrief}>
               <div className="mt-[clamp(1.75rem,3.5vw,2.5rem)] grid grid-cols-2 gap-x-10 gap-y-7 max-[640px]:grid-cols-1">
                 <Field label="Your name">
                   <input name="name" required autoComplete="name" className={FIELD} />
