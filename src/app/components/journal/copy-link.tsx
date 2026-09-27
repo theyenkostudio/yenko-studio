@@ -1,6 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import posthog from "posthog-js";
+
+const isPostHogConfigured = Boolean(
+  process.env.NEXT_PUBLIC_POSTHOG_KEY && process.env.NEXT_PUBLIC_POSTHOG_HOST,
+);
 
 /**
  * Copies the current URL. Client-only because the address is only knowable in
@@ -24,6 +29,9 @@ export default function CopyLink() {
       onClick={async () => {
         try {
           await navigator.clipboard.writeText(window.location.href);
+          if (isPostHogConfigured) {
+            posthog.capture("journal_link_copied");
+          }
           setCopied(true);
           window.setTimeout(() => setCopied(false), 2000);
         } catch {

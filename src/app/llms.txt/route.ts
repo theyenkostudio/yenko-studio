@@ -78,6 +78,10 @@ ${notes
 - [About](${SITE_URL}/about) — the studio, the name, and what we hold to
 - [Journal](${SITE_URL}/journal) — notes from the studio
 
+## Optional
+
+- [Full Journal content](${SITE_URL}/llms-full.txt) — complete article text in one machine-readable document
+
 ## Contact
 
 - Email: hello@yenko.studio
