@@ -25,7 +25,7 @@ function build() {
 
   return `# Yenko Studio
 
-> A design and technology studio based in Accra, Ghana and Abuja, Nigeria, working with clients worldwide. We design and build websites, e-commerce stores, brand systems and custom software.
+> Yenko Studio is an independent design and technology studio based in Accra, Ghana and Abuja, Nigeria. We build websites, e-commerce experiences, brand systems and custom software for ambitious businesses and growth-stage teams.
 
 Every project includes a dedicated product manager and dedicated quality assurance — unusual for a studio of this size, and the clearest difference between us and a freelancer.
 

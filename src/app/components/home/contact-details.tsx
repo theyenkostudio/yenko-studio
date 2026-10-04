@@ -1,5 +1,6 @@
 import Button from "../ui/button";
 import BriefDialog from "../brief/brief-dialog";
+import BookCall from "../brief/book-call";
 import StudioClock from "./studio-clock";
 import { WHATSAPP_URL, EMAIL } from "../../data/links";
 
@@ -47,10 +48,16 @@ export default function ContactDetails() {
         ))}
       </dl>
 
-      <div className="mt-[clamp(1.75rem,3.5vw,2.5rem)] flex flex-wrap items-center gap-x-3 gap-y-4">
-        <BriefDialog />
-        <Button href={WHATSAPP_URL} on="ink" variant="outline">
-          Talk to Yenko
+      {/* Two ways to start, equal weight and width; the quieter ways to reach
+          us sit beneath as plain links. */}
+      <div className="mt-[clamp(1.75rem,3.5vw,2.5rem)] grid grid-cols-2 gap-3 max-[520px]:grid-cols-1">
+        <BriefDialog className="w-full justify-between" />
+        <BookCall className="w-full justify-between" />
+      </div>
+
+      <div className="mt-6 flex flex-wrap items-center gap-x-8 gap-y-4">
+        <Button href={WHATSAPP_URL} on="ink" variant="text" icon="none">
+          WhatsApp
         </Button>
         <Button href={`mailto:${EMAIL}`} on="ink" variant="text" icon="none">
           {EMAIL}
@@ -58,8 +65,7 @@ export default function ContactDetails() {
       </div>
 
       <p className="mt-5 text-[13px] text-studio-dim">
-        Send a brief for a considered reply, or WhatsApp if you would rather just
-        talk.
+        Send a brief for a considered reply, or book a call to talk it through.
       </p>
     </div>
   );

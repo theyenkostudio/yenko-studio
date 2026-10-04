@@ -9,7 +9,7 @@ import Coordinates from "../components/about/coordinates";
 export const metadata = pageMeta({
   title: "About",
   description:
-    "Yenko Studio is a design and technology studio in Accra and Abuja, building websites, products and brand systems for businesses here and anywhere.",
+    "Yenko Studio is an independent design and technology studio based in Accra and Abuja. We build websites, e-commerce experiences, brand systems and custom software for ambitious businesses and growth-stage teams.",
   path: "/about",
 });
 
@@ -57,9 +57,9 @@ export default function AboutPage() {
         />
 
         <p className="mt-[clamp(1.75rem,3.5vw,2.75rem)] max-w-[48ch] text-[clamp(1rem,1.5vw,1.25rem)] leading-relaxed text-studio-dim">
-          A design and technology studio in Accra and Abuja, competing on taste,
-          judgement and the outcomes it actually produces &mdash; for businesses
-          around us, and for anyone who wants what we do.
+          Yenko is an independent design and technology studio based in Accra
+          and Abuja. We build websites, e-commerce experiences, brand systems
+          and custom software for ambitious businesses and growth-stage teams.
         </p>
 
         <dl className="mt-[clamp(3rem,7vw,5rem)] flex flex-wrap gap-x-16 gap-y-5 border-t border-studio-paper/20 pt-6">
