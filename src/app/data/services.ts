@@ -81,15 +81,15 @@ export const pillars: Pillar[] = [
   },
   {
     number: "04",
-    title: "Product & internal tools",
+    title: "Custom software & internal tools",
     forWho: "For teams whose operations have outgrown a spreadsheet and a group chat.",
-    short: "Internal software for teams who have outgrown the spreadsheet.",
+    short: "Custom software for teams who have outgrown the spreadsheet.",
     body: [
-      "Software for how the business actually runs: admin dashboards, integrations between tools you already pay for, and small apps that replace a spreadsheet three people are editing at once.",
+      "Custom software for how the business actually runs: admin dashboards, internal tools, integrations between systems you already use, and applications that replace a spreadsheet three people are editing at once.",
       "This is engineering the team has done across several industries. There is no Yenko case study for it yet — ask us and we will walk you through what we have built elsewhere.",
     ],
     includes: [
-      "Admin dashboards and internal tools",
+      "Custom software, admin dashboards and internal tools",
       "Integrations between systems you already use",
       "Data clean-up and migration",
       "Ongoing maintenance",

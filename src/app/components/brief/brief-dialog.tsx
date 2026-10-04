@@ -120,7 +120,7 @@ function Field({
   );
 }
 
-export default function BriefDialog() {
+export default function BriefDialog({ className = "" }: { className?: string } = {}) {
   const dialog = useRef<HTMLDialogElement>(null);
   const form = useRef<HTMLFormElement>(null);
   const [state, handleSubmit, reset] = useForm<BriefFields>(FORM_ID);
@@ -200,8 +200,8 @@ export default function BriefDialog() {
 
   return (
     <>
-      <Button onClick={open} on="ink">
-        Send a project brief
+      <Button onClick={open} on="ink" className={className}>
+        Send a brief
       </Button>
 
       <dialog

@@ -12,10 +12,10 @@ import Preloader from "./components/loader/preloader";
 import Cursor from "./components/ui/cursor";
 import { LINKEDIN_URL, INSTAGRAM_URL, EMAIL } from "./data/links";
 
-const TITLE = "Yenko Studio — Digital product studio in Accra & Abuja";
+const TITLE = "Yenko Studio — Independent digital product studio in Accra & Abuja";
 
 const TAGLINE =
-  "Digital product studio in Accra and Abuja. We design and build websites, web apps and custom software for founders and growth-stage teams across Africa.";
+  "Yenko Studio is an independent design and technology studio based in Accra and Abuja. We build websites, e-commerce experiences, brand systems and custom software for ambitious businesses and growth-stage teams.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://yenko.studio"),
@@ -92,6 +92,14 @@ const jsonLd = {
     },
   ],
   email: `mailto:${EMAIL}`,
+  knowsAbout: [
+    "Website design and development",
+    "E-commerce",
+    "Brand systems",
+    "Digital product design",
+    "Custom software development",
+    "Internal tools and business software",
+  ],
   sameAs: [
     "https://x.com/theyenkostudio",
     LINKEDIN_URL,

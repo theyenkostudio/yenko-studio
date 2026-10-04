@@ -9,7 +9,7 @@ import { SITE_URL } from "../data/links";
 export const metadata = pageMeta({
   title: "Services",
   description:
-    "Websites, e-commerce, brand systems and custom software from Yenko Studio in Accra and Abuja — with a dedicated product manager and quality assurance on every project.",
+    "Yenko Studio builds websites, e-commerce experiences, brand systems and custom software for ambitious businesses and growth-stage teams from Accra and Abuja.",
   path: "/services",
 });
 

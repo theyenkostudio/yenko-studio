@@ -18,16 +18,16 @@ export default function Hero() {
           as="h1"
           immediate
           delay={0.38}
-          lines={["Digital foundations", "for Africa's", "next chapter."]}
-          className="mt-[clamp(2rem,5vw,4rem)] text-[clamp(4rem,11.5vw,11.5rem)] font-[650] leading-[0.82] tracking-[-0.085em]"
+          lines={["The website, brand", "or tool that changes", "the business."]}
+          className="mt-[clamp(2rem,5vw,4rem)] text-[clamp(3.25rem,9vw,8.5rem)] font-[650] leading-[0.82] tracking-[-0.085em]"
         />
 
         <div className="mt-[clamp(3rem,7vw,6rem)] flex flex-wrap items-end justify-between gap-8 text-sm leading-[1.45]">
           <p className="max-w-[460px] text-studio-paper/65">
-            From strategy through execution, Yenko partners with ambitious
-            founders, growth-stage teams and future-facing brands to build
-            products, platforms and digital experiences that help them scale
-            with clarity and compete anywhere.
+            Yenko is an independent design and technology studio based in
+            Accra and Abuja. We build websites, e-commerce experiences, brand
+            systems and custom software for ambitious businesses and
+            growth-stage teams.
           </p>
 
           {/* Inline cue for touch, where the rail is hidden and hover does not exist. */}
