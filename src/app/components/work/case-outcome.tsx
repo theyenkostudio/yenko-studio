@@ -9,25 +9,13 @@ import { LANE, LANE_BODY, LABEL } from "./case-lane";
  */
 export default function CaseOutcome({
   number,
-  flush = false,
   children,
 }: {
   number: string;
-  /**
-   * Set when the outcome follows the evidence reel. The reel is its own
-   * full-bleed stone band, so the gap this section normally opens above itself
-   * would show as a stripe of paper wedged between two coloured bands rather
-   * than as breathing room. Against prose on paper the gap is still wanted.
-   */
-  flush?: boolean;
   children: string;
 }) {
   return (
-    <section
-      className={`bg-studio-ink px-[5vw] py-[clamp(3.5rem,8vw,7.5rem)] text-studio-paper ${
-        flush ? "" : "mt-[clamp(4rem,10vw,8.75rem)]"
-      }`}
-    >
+    <section className="mt-[clamp(4rem,10vw,8.75rem)] bg-studio-ink px-[5vw] py-[clamp(3.5rem,8vw,7.5rem)] text-studio-paper">
       <div className={LANE}>
         <div className={`${LABEL} pt-4.5 font-medium text-studio-muted max-[860px]:pt-0`}>
           {number}

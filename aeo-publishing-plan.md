@@ -18,7 +18,7 @@ Publish one post a week after the opening pair. This leaves time to share each a
 
 | Date | Topic |
 | --- | --- |
-| 11 October 2026 | SEO vs AEO: How African Businesses Can Get Found in Search and AI Answers |
+| 31 October 2026 | ✅ SEO vs AEO: How African Businesses Can Get Found in Search and AI Answers — `/journal/seo-vs-aeo-african-businesses` |
 | 18 October 2026 | How to Make Your African Business Easier for AI to Understand and Recommend |
 | 25 October 2026 | Local Search in Africa: How Customers Find Businesses in Accra, Lagos and Beyond |
 | 1 November 2026 | The Information Your Business Needs Online Before AI Can Recommend You |

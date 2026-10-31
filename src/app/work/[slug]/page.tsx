@@ -6,7 +6,6 @@ import RevealText from "../../components/reveal-text";
 import WorkBreadcrumb from "../../components/work/work-breadcrumb";
 import WorkMeta from "../../components/work/work-meta";
 import CaseNote from "../../components/work/case-note";
-import CaseEvidence from "../../components/work/case-evidence";
 import CaseOutcome from "../../components/work/case-outcome";
 import ProjectPager from "../../components/work/project-pager";
 import Contact from "@/app/components/home/contact";
@@ -59,16 +58,15 @@ export default async function WorkCaseStudyPage({
   // still hands the reader somewhere to go.
   const onward = next ?? prev;
 
-  // The written notes and the evidence share one run of numbers, so the
-  // evidence and the outcome shift up if a case study has no challenge.
+  // The written notes and the outcome share one run of numbers, so the
+  // outcome shifts up if a case study has no challenge or approach.
   const notes = [
     item.challenge && { label: "The challenge", body: item.challenge },
     item.approach && { label: "The approach", body: item.approach },
   ].filter((n): n is { label: string; body: string } => Boolean(n));
 
   const pad = (n: number) => String(n).padStart(2, "0");
-  const evidenceNumber = pad(notes.length + 1);
-  const outcomeNumber = pad(notes.length + (item.evidence?.length ? 2 : 1));
+  const outcomeNumber = pad(notes.length + 1);
 
   return (
     <div className="bg-studio-paper text-studio-ink">
@@ -148,14 +146,8 @@ export default async function WorkCaseStudyPage({
         </section>
       )}
 
-      {item.evidence && item.evidence.length > 0 && (
-        <CaseEvidence evidence={item.evidence} client={item.client} number={evidenceNumber} />
-      )}
-
       {item.outcome && (
-        <CaseOutcome number={outcomeNumber} flush={Boolean(item.evidence?.length)}>
-          {item.outcome}
-        </CaseOutcome>
+        <CaseOutcome number={outcomeNumber}>{item.outcome}</CaseOutcome>
       )}
 
       {onward && (

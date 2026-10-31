@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { journalPosts, formatDate } from "../../data/journal";
 import { pageMeta } from "../../data/seo";
@@ -8,6 +9,38 @@ import JournalRail from "../../components/journal/journal-rail";
 
 export function generateStaticParams() {
   return journalPosts.map((post) => ({ slug: post.slug }));
+}
+
+/**
+ * A paragraph can carry a markdown-style link — `[label](/journal/slug)` —
+ * when a note refers to another one by name. Keeping the body data as plain
+ * strings (rather than a richer node tree) means every existing post stays
+ * valid; only the paragraphs that need a link opt into the syntax.
+ */
+function renderWithLinks(text: string, keyPrefix: string) {
+  const linkPattern = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const nodes: React.ReactNode[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  let i = 0;
+
+  while ((match = linkPattern.exec(text))) {
+    if (match.index > lastIndex) nodes.push(text.slice(lastIndex, match.index));
+    const [whole, label, href] = match;
+    nodes.push(
+      <Link
+        key={`${keyPrefix}-${i++}`}
+        href={href}
+        className="underline decoration-dashed decoration-1 decoration-studio-ink underline-offset-4 transition-colors hover:text-studio-dim hover:decoration-studio-dim"
+      >
+        {label}
+      </Link>,
+    );
+    lastIndex = match.index + whole.length;
+  }
+  if (lastIndex < text.length) nodes.push(text.slice(lastIndex));
+
+  return nodes;
 }
 
 export async function generateMetadata({
@@ -92,7 +125,7 @@ export default async function JournalPostPage({
                   key={i}
                   className="text-[clamp(1.0625rem,1.35vw,1.1875rem)] leading-[1.75] text-[#2b2a27] [&:not(:first-child)]:mt-6"
                 >
-                  {block}
+                  {renderWithLinks(block, `p-${i}`)}
                 </p>
               ) : (
                 <h2

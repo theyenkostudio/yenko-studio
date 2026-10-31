@@ -1,45 +1,3 @@
-/**
- * Evidence is the proof attached to a claim in the case study — the thing
- * that turns "we built a consultation flow" into something a reader can
- * check. Which medium a piece of evidence uses is not a styling choice:
- *
- *   still — a structural claim. "Six practice areas" is proved completely
- *           by one frame; motion would add nothing.
- *   clip  — a behavioural claim. A form that routes to a person looks
- *           identical to one that routes nowhere until you press submit,
- *           so a still literally cannot make the claim.
- *
- * `src` is optional on both. Until the capture exists the component renders
- * its own slot with the shooting spec, so the section ships before the
- * screenshots do and fills in by adding a path.
- */
-interface EvidenceBase {
-  /** The claim this proves, stated as a claim — not a description of the image. */
-  claim: string;
-  /** One sentence of substantiating detail. */
-  detail: string;
-  /** Shown in the frame's address bar, so the reader can see where it came from. */
-  url: string;
-}
-
-export interface EvidenceStill extends EvidenceBase {
-  kind: "still";
-  src?: string;
-  alt?: string;
-}
-
-export interface EvidenceClip extends EvidenceBase {
-  kind: "clip";
-  /** WebM first; MP4 is the Safari-and-older fallback. */
-  webm?: string;
-  mp4?: string;
-  /** Also the reduced-motion still — so that path shows a frame, not a gap. */
-  poster?: string;
-  duration: string;
-}
-
-export type Evidence = EvidenceStill | EvidenceClip;
-
 export interface WorkItem {
   slug: string;
   client: string;
@@ -52,8 +10,6 @@ export interface WorkItem {
   challenge?: string;
   approach?: string;
   outcome?: string;
-  /** Proof for the claims above. Omitted entirely on work with nothing to show yet. */
-  evidence?: Evidence[];
 }
 
 export const workItems: WorkItem[] = [
@@ -62,55 +18,17 @@ export const workItems: WorkItem[] = [
     client: "Pachimond Attorneys",
     year: "2024",
     summary:
-      "A marketing and lead-generation site for a Port Harcourt law firm — six practice areas, a working consultation pipeline, and a voice serious enough for the clients they actually take.",
+      "The first website for a Port Harcourt law firm that had built a real corporate and commercial practice on referral alone. Six practice areas, a consultation flow that reaches a person, and a voice serious enough for the clients they actually take.",
     services: ["Web", "Brand voice", "Content structure"],
     status: "live",
     thumbnail: "/assets/pachimond-cover.png",
     url: "https://pachimondattorneys.com",
     challenge:
-      "A firm doing real corporate and commercial work had a web presence that undersold it — no clear practice-area structure, no consultation path, nothing that read as credible to the kind of client they wanted more of.",
+      "Pachimond had never had a website. The firm had been doing serious corporate and commercial work for years, and every new client still arrived through a referral or a conversation, with nothing online to check them against first. The brief, when it came, was about as open as a brief gets: we need a website.",
     approach:
-      "Built a clean, fast Next.js site around six named practice areas, a blog for real legal commentary, and a consultation flow that actually routes to a person — no dead-end contact forms.",
+      "We started from nothing, which meant deciding what the firm actually is before deciding what the site should look like. That turned into six named practice areas instead of a vague services page, a blog the firm could use to write in its own voice about its own work, and a consultation flow built to put a prospective client in touch with a person rather than dump them into a form that goes quiet.",
     outcome:
-      "A site that functions as the firm's first impression, not an afterthought — practice pages, testimonials, and a consultation form doing the job a receptionist used to do alone.",
-    evidence: [
-      {
-        kind: "still",
-        claim: "Six practice areas, each with its own page",
-        detail:
-          "The structure the old site never had. Corporate, commercial, litigation, property, employment, family.",
-        url: "pachimondattorneys.com/practice-areas",
-      },
-      {
-        kind: "still",
-        claim: "A blog carrying real legal commentary",
-        detail:
-          "Written by the firm rather than outsourced, indexed and searchable from launch.",
-        url: "pachimondattorneys.com/insights",
-      },
-      {
-        kind: "still",
-        claim: "Every practice area has a real page behind it",
-        detail:
-          "Not six links to one generic contact form — each area carries its own scope, its own language, its own way in.",
-        url: "pachimondattorneys.com/practice-areas/corporate-commercial",
-      },
-      {
-        kind: "still",
-        claim: "Named clients, on the record",
-        detail:
-          "Attributed testimonials rather than anonymous praise — the kind a prospective client can actually weigh.",
-        url: "pachimondattorneys.com/#testimonials",
-      },
-      {
-        kind: "clip",
-        claim: "A consultation that reaches a person",
-        detail:
-          "The one claim a screenshot cannot make. Recorded end to end — form, validation, routing, confirmation — because a dead-end form looks identical to a working one until you press submit.",
-        url: "pachimondattorneys.com/consultation",
-        duration: "0:14",
-      },
-    ],
+      "A firm that has only ever been found through referral now has somewhere to send a new client before the first call, and a consultation form that reaches someone on the other end instead of disappearing into an inbox nobody checks.",
   },
   {
     slug: "styled-by-aidal",
